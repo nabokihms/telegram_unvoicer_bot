@@ -5,10 +5,10 @@ __all__ = [
 ]
 
 
-async def convert_opus(file_path, new_file_path):
+async def convert_opus(file_path: str, new_file_path: str):
     """
-    Convert files with .opus extension (using by WhatsApp).
-    Depends on unix opus-tools>=0.1.9-1 package.
+    Конвертирует файл с расширением .opus (используется WhatsApp).
+    Зависит от внешнего пакета opus-tools>=0.1.9-1.
     """
     process = await subprocess.create_subprocess_exec(
         'opusdec', file_path, new_file_path

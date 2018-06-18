@@ -1,5 +1,6 @@
 from json import dumps
 from operator import methodcaller
+from typing import Dict
 
 from aiohttp import ClientResponse, ClientSession
 
@@ -9,21 +10,21 @@ from ..constants import TELEGRAM_BOT_API_URL, TELEGRAM_REQUEST_HEADERS, \
 
 class TelegramApiRequest(object):
     """
-    Class for creating and sending requests to telegram api.
+    Класс для создания и отправки запросов на API телеграма.
     """
     def __init__(
             self,
             http_method: str,
             api_method: str,
-            data=None,
-            params=None,
+            data: Dict=None,
+            params: Dict=None,
     ):
         lowered_http_method = http_method.lower()
 
         assert lowered_http_method in TELEGRAM_REQUEST_ALLOWED_HTTP_METHODS, \
-            f'http method not allowed  - {lowered_http_method}.'
+            f'Недопустимый http метод - {lowered_http_method}.'
         assert api_method in TELEGRAM_REQUEST_ALLOWED_API_METHODS, \
-            f'telegram api method not allowed  - {api_method}.'
+            f'Недопустимый telegram api метод - {api_method}.'
 
         self._http_method = lowered_http_method
         self._api_method = api_method
@@ -44,9 +45,9 @@ class TelegramApiRequest(object):
         return self._request(session)
 
     @classmethod
-    def get(cls,  api_method: str, data=None, params=None):
+    def get(cls,  api_method: str, data: Dict=None, params: Dict=None):
         return cls('get', api_method, data, params)
 
     @classmethod
-    def post(cls,  api_method: str, data=None, params=None):
+    def post(cls,  api_method: str, data: Dict=None, params: Dict=None):
         return cls('post', api_method, data, params)

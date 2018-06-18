@@ -13,7 +13,7 @@ async def print_request(request, handler):
     return resp
 
 
-def init_app():
+def init_app() -> web.Application:
     webhook_handler = TelegramWebhookHandler(
         asyncio.get_event_loop()
     )

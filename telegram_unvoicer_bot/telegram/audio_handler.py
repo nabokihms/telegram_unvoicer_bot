@@ -8,7 +8,9 @@ from .utils import TelegramApiRequest
 
 
 class AudioTelegramSupportHandler(AbstractTelegramSupportHandler):
-
+    """
+    Вспомогательный обработчик полученных ботом аудиоФАЙЛОВ.
+    """
     def __init__(self, session: ClientSession, chat_id: str, file_id: str):
         super().__init__(session, chat_id)
         self._file_id = file_id
@@ -16,9 +18,6 @@ class AudioTelegramSupportHandler(AbstractTelegramSupportHandler):
         self._error_message = None
 
     async def _get_audio_file_path(self) -> str:
-        """
-        Getting audio file path from TelegramApi.
-        """
         file_data_response = await TelegramApiRequest.get(
             'getFile', data={'file_id': self._file_id}
         )(self._session)
@@ -27,14 +26,11 @@ class AudioTelegramSupportHandler(AbstractTelegramSupportHandler):
         return file_data['result']['file_path']
 
     async def _download_audio_file(self):
-        """
-        Downloading audio file. Return path if downloaded.
-        """
         audio_file_path = await self._get_audio_file_path()
         path, ext = audio_file_path.split('.')
 
         if ext not in AUDIO_FILES_SUPPORTED_FORMATS:
-            self._error_message = f'File extension .{ext} is not supported ' \
+            self._error_message = f'Формат файла .{ext} не поддерживается ' \
                                   f'\u2639'
             return
 
@@ -43,7 +39,7 @@ class AudioTelegramSupportHandler(AbstractTelegramSupportHandler):
         )
 
         if audio_file_body_resp.status != 200:
-            self._error_message = u'Download file failed \u2639'
+            self._error_message = u'Загрузка файла не удалась \u2639'
             return
 
         temp_dir_audio_file_path = \
@@ -57,8 +53,8 @@ class AudioTelegramSupportHandler(AbstractTelegramSupportHandler):
     async def handle(self) -> int:
 
         await self._download_audio_file()
-
-        # If there is a Telegram api error, send error code.
+        # Если возникла ошибка, возвращаем её текст, чтобы отправить
+        # пользователю.
         if self._error_message:
             data = self._error_message
         else:
