@@ -1,5 +1,5 @@
 from os import getenv
-from typing import Dict, FrozenSet
+from typing import FrozenSet
 
 
 TELEGRAM_BOT_API_KEY = getenv('API_KEY', '')
@@ -14,10 +14,3 @@ TELEGRAM_MESSAGE_AUDIO_KEYS: FrozenSet[str] = frozenset(
     ('voice', 'audio', 'document')
 )
 
-TELEGRAM_REQUEST_HEADERS: Dict[str, str] = {'Content-Type': 'application/json'}
-TELEGRAM_REQUEST_ALLOWED_HTTP_METHODS: FrozenSet[str] = frozenset(
-    ('get', 'post')
-)
-TELEGRAM_REQUEST_ALLOWED_API_METHODS: FrozenSet[str] = frozenset(
-    ('getFile', 'sendMessage', 'getWebhookinfo', 'setWebhook')
-)

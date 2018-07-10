@@ -4,7 +4,8 @@ from telegram_unvoicer_bot.audio import decode_audio, write_file_to_tmp_dir, \
     AUDIO_FILES_SUPPORTED_FORMATS, AUDIO_FILES_TEMPORARY_DIRECTORY
 from telegram_unvoicer_bot.telegram.const import TELEGRAM_BOT_FILE_PATH_API_URL
 from .abc import AbstractTelegramSupportHandler
-from .utils import TelegramApiRequest
+from .request import telegram_api_get_file_method, \
+    telegram_api_send_message
 
 
 class AudioTelegramSupportHandler(AbstractTelegramSupportHandler):
@@ -18,9 +19,9 @@ class AudioTelegramSupportHandler(AbstractTelegramSupportHandler):
         self._error_message = None
 
     async def _get_audio_file_path(self) -> str:
-        file_data_response = await TelegramApiRequest.get(
-            'getFile', data={'file_id': self._file_id}
-        )(self._session)
+        file_data_response = await telegram_api_get_file_method(
+            self._session, data={'file_id': self._file_id}
+        )
 
         file_data = await file_data_response.json()
         return file_data['result']['file_path']
@@ -60,8 +61,8 @@ class AudioTelegramSupportHandler(AbstractTelegramSupportHandler):
         else:
             data = await decode_audio(self._downloaded_file_path)
 
-        send_message_response = await TelegramApiRequest.post(
-            'sendMessage', data={'chat_id': self._chat_id, 'text': data}
-        )(self._session)
+        send_message_response = await telegram_api_send_message(
+            self._session, data={'chat_id': self._chat_id, 'text': data}
+        )
 
         return send_message_response.status

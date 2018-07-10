@@ -3,7 +3,8 @@ from os import getenv
 
 from aiohttp import ClientSession
 
-from telegram_unvoicer_bot.telegram import TelegramApiRequest
+from telegram_unvoicer_bot.telegram import telegram_api_get_webhookinfo, \
+    telegram_api_set_webhook
 
 __all__ = [
     'bind_webhook',
@@ -13,25 +14,19 @@ __all__ = [
 
 async def _curl_bind_webhook(loop):
     async with ClientSession(loop=loop) as session:
-        resp = await TelegramApiRequest.post(
-            'setWebhook', data={
+        resp = await telegram_api_set_webhook(
+            session, data={
                 'url': f'https://${getenv("APP_DOMAIN")}/webhooks',
                 'certificat': f'@${getenv("SSL_PATH")}/cert.pem',
             }
-        )(session)
-        print(
-            await resp.json()
         )
+        print(await resp.json())
 
 
 async def _curl_get_webhook_info(loop):
     async with ClientSession(loop=loop) as session:
-        resp = await TelegramApiRequest.get(
-            'getWebhookinfo'
-        )(session)
-        print(
-            await resp.json()
-        )
+        resp = await telegram_api_get_webhookinfo(session)
+        print(await resp.json())
 
 
 def bind_webhook():
