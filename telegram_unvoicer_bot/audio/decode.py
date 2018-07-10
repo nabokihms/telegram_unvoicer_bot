@@ -1,9 +1,11 @@
+import asyncio
 import subprocess
 
 import speech_recognition as sr
 
-from telegram_unvoicer_bot.constants import AUDIO_FILES_CONVERTERS, \
+from .const import AUDIO_FILES_CONVERTERS, \
     AUDIO_FILES_LANGUAGE
+from .utils import delete_file_from_tmp_dir
 
 __all__ = [
     'decode_audio',
@@ -37,4 +39,9 @@ async def decode_audio(file_path: str) -> str:
         return f'Длина файла составляет {seconds} секунды! ' \
                f'Я не умею декодировать настолько большие \U0001f605'
 
-    return _google_speech_recognise(new_file_path)
+    text = _google_speech_recognise(new_file_path)
+
+    await asyncio.wait([
+        delete_file_from_tmp_dir(x) for x in (file_path, new_file_path)
+    ])
+    return text

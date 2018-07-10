@@ -1,8 +1,8 @@
 from aiohttp import ClientSession
 
-from telegram_unvoicer_bot.audio import decode_audio, write_file_to_tmp_dir
-from telegram_unvoicer_bot.constants import AUDIO_FILES_TEMPORARY_DIRECTORY, \
-    TELEGRAM_BOT_FILE_PATH_API_URL, AUDIO_FILES_SUPPORTED_FORMATS
+from telegram_unvoicer_bot.audio import decode_audio, write_file_to_tmp_dir, \
+    AUDIO_FILES_SUPPORTED_FORMATS, AUDIO_FILES_TEMPORARY_DIRECTORY
+from telegram_unvoicer_bot.telegram.const import TELEGRAM_BOT_FILE_PATH_API_URL
 from .abc import AbstractTelegramSupportHandler
 from .utils import TelegramApiRequest
 
@@ -43,7 +43,7 @@ class AudioTelegramSupportHandler(AbstractTelegramSupportHandler):
             return
 
         temp_dir_audio_file_path = \
-            f'{AUDIO_FILES_TEMPORARY_DIRECTORY}{audio_file_path}'
+            f'{AUDIO_FILES_TEMPORARY_DIRECTORY}/{audio_file_path}'
 
         await write_file_to_tmp_dir(
             temp_dir_audio_file_path, await audio_file_body_resp.read()

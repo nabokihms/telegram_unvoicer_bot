@@ -4,8 +4,12 @@ from typing import Dict
 
 from aiohttp import ClientResponse, ClientSession
 
-from ..constants import TELEGRAM_BOT_API_URL, TELEGRAM_REQUEST_HEADERS, \
+from .const import TELEGRAM_BOT_API_URL, TELEGRAM_REQUEST_HEADERS, \
     TELEGRAM_REQUEST_ALLOWED_HTTP_METHODS, TELEGRAM_REQUEST_ALLOWED_API_METHODS
+
+__all__ = [
+    'TelegramApiRequest',
+]
 
 
 class TelegramApiRequest(object):

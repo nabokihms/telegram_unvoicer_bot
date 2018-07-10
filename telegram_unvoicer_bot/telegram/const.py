@@ -1,6 +1,8 @@
-from typing import FrozenSet, Dict
+from os import getenv
+from typing import Dict, FrozenSet
 
-from telegram_unvoicer_bot.settings import TELEGRAM_BOT_API_KEY
+
+TELEGRAM_BOT_API_KEY = getenv('API_KEY', '')
 
 TELEGRAM_BOT_API_URL_PREFIX: str = 'https://api.telegram.org'
 TELEGRAM_BOT_API_URL: str = \

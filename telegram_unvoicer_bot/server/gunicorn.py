@@ -1,20 +1,33 @@
 import subprocess
-from os import cpu_count
-from typing import Dict, Any
+from os import cpu_count, getenv
 
-from telegram_unvoicer_bot.settings import HOST_IP, HOST_PORT
 
-_SETTINGS: Dict[str, Any[str, int]] = {
-    '-b': f'{HOST_IP}:{HOST_PORT}',
-    '-t': 300,
-    '-w': cpu_count(),
-    '-k': 'aiohttp.worker.GunicornUVLoopWebWorker',
+_DEFAULT_SETTINGS = {
+    'APP_HOST': '0.0.0.0',
+    'APP_PORT': 8080,
+    'APP_WORKERS': cpu_count(),
+    'APP_TIMEOUT': 300
 }
 
 
-def run_gunicorn_workers():
-    subprocess.run([
+def run_gunicorn_workers(daemon=False, reload=False):
+    settings = {
+        k: getenv(k) or v
+        for k, v in _DEFAULT_SETTINGS.items()
+    }
+    command = [
         'gunicorn',
-        *(f'{key} {setting}' for key, setting in _SETTINGS.items()),
+        '-b', f'{settings["APP_HOST"]}:{settings["APP_PORT"]}',
+        '-w', f'{settings["APP_WORKERS"]}',
+        '-t', f'{settings["APP_TIMEOUT"]}',
+        '-k', 'aiohttp.worker.GunicornUVLoopWebWorker',
         'telegram_unvoicer_bot.server:app'
-    ])
+    ]
+
+    if reload:
+        command.insert(1, '-reload')
+
+    if daemon:
+        command.insert(1, '-D')
+
+    subprocess.run(command)

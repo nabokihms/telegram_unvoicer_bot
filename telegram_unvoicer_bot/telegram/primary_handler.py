@@ -6,7 +6,7 @@ from aiohttp import ClientSession, web, ClientRequest
 
 from .abc import AbstractTelegramHandler
 from .audio_handler import AudioTelegramSupportHandler
-from ..constants import TELEGRAM_MESSAGE_AUDIO_KEYS
+from .const import TELEGRAM_MESSAGE_AUDIO_KEYS
 
 
 class TelegramWebhookHandler(AbstractTelegramHandler):
