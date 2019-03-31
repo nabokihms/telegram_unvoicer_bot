@@ -5,8 +5,8 @@ from typing import FrozenSet
 TELEGRAM_BOT_API_KEY: str = environ['TELEGRAM_API_KEY']
 
 TELEGRAM_BOT_API_URL_PREFIX: str = 'https://api.telegram.org'
-T
-ELEGRAM_BOT_API_URL: str = \
+
+TELEGRAM_BOT_API_URL: str = \
     f'{TELEGRAM_BOT_API_URL_PREFIX}/bot{TELEGRAM_BOT_API_KEY}/'
 
 TELEGRAM_BOT_FILE_PATH_API_URL: str = \
