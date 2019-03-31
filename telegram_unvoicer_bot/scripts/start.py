@@ -1,4 +1,5 @@
 from argparse import ArgumentParser
+from os import environ
 
 from telegram_unvoicer_bot.server import run_gunicorn_workers
 
@@ -19,6 +20,9 @@ def run():
                         default=False,
                         const=True,
                         help='Перезагрузка воркеров при изменении кода.')
+
+    if 'TELEGRAM_API_KEY' not in environ:
+        print('Environ TELEGRAM_API_KEY is not set.')
 
     args = parser.parse_args()
     run_gunicorn_workers(daemon=args.daemon, reload=args.reload)

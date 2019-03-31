@@ -15,18 +15,7 @@ git clone `ссылка на репозиторий`
 ```bash
 cd telegram_unvoicer_bot
 ```
-Копируем файл с примером настроек. 
-```bash
-cp telegram_unvoicer_bot/settings.py.example \
-   telegram_unvoicer_bot/settings.py
-```
-Пишем в `telegram_unvoicer_bot/settings.py` свои `HOST_URL` и 
-`TELEGRAM_BOT_API_KEY`.
- 
- Далее генерируем самоподписные сертификаты командой 
- ```bash
- bash scripts/create_certs.sh
- ```
+
  Устанавливаем себе Докер. Например по этой инструкции.
  https://docs.docker.com/install/linux/docker-ce/ubuntu/
  
@@ -39,7 +28,14 @@ cp telegram_unvoicer_bot/settings.py.example \
  ```bash
  docker run \
     -d \
+    -e TELEGRAM_API_KEY='your_key'
     --name telegram_unvoicer_bot \
     -p 443:443 \
     telegram_unvoicer_bot:v1
+ ```
+
+ Осталось настроить отправку вебхуков. В образе для этого есть несколько утилит.
+ ```
+ telegram_unvoicer_bot_set_webhook // для установки вебхука.
+ telegram_unvoicer_bot_get_webhook_info // для просмотра информации.
  ```

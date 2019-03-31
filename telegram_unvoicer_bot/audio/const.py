@@ -1,5 +1,13 @@
 from .converters import convert_opus
 
+__all__ = [
+    'AUDIO_FILES_TEMPORARY_DIRECTORY',
+    'AUDIO_FILES_LANGUAGE',
+    'AUDIO_FILES_CONVERTERS',
+    'AUDIO_FILES_SUPPORTED_FORMATS',
+]
+
+
 AUDIO_FILES_TEMPORARY_DIRECTORY = '/tmp'
 AUDIO_FILES_LANGUAGE = 'ru-RU'
 

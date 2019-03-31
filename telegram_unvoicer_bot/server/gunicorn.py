@@ -20,7 +20,7 @@ def run_gunicorn_workers(daemon=False, reload=False):
         '-b', f'{settings["APP_HOST"]}:{settings["APP_PORT"]}',
         '-w', f'{settings["APP_WORKERS"]}',
         '-t', f'{settings["APP_TIMEOUT"]}',
-        '-k', 'aiohttp.worker.GunicornUVLoopWebWorker',
+        '-k', 'aiohttp.worker.GunicornWebWorker',
         'telegram_unvoicer_bot.server:app'
     ]
 

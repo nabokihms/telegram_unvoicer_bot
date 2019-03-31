@@ -13,11 +13,21 @@ __all__ = [
 
 
 async def _curl_bind_webhook(loop):
+    app_domain = getenv('APP_DOMAIN')
+    if app_domain is None:
+        print('Environ APP_DOMAIN is not set.')
+        return
+    
+    certificate = getenv('SSL_PATH')
+    if certificate is None:
+        print('Environ SSL_PATH is not set.')
+        return
+    
     async with ClientSession(loop=loop) as session:
         resp = await telegram_api_set_webhook(
             session, data={
                 'url': f'https://${getenv("APP_DOMAIN")}/webhooks',
-                'certificat': f'@${getenv("SSL_PATH")}/cert.pem',
+                'certificate': f'@${getenv("SSL_PATH")}/cert.pem',
             }
         )
         print(await resp.json())

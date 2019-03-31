@@ -19,7 +19,6 @@ setup(
         'aiohttp==3.2.1',
         'aiofiles==0.3.2',
         'SpeechRecognition==3.8.1',
-        'uvloop==0.10.1',
         'gunicorn==19.8.1',
         'PyYAML==3.12',
     ],
@@ -33,7 +32,6 @@ setup(
     entry_points={
         'console_scripts': [
             f'{_NAME}_start = {_NAME}.scripts:run',
-            f'{_NAME}_config_to_env = {_NAME}.scripts:config2env',
             f'{_NAME}_bind_webhook = {_NAME}.scripts:bind_webhook',
             f'{_NAME}_get_webhook_info = {_NAME}.scripts:get_webhook_info',
             f'{_NAME}_generate_certs = {_NAME}.scripts:create_certs',
