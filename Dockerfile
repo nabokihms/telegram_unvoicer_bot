@@ -19,6 +19,4 @@ RUN apk add --update \
     && rm -rf ~/.cache/pip\
     && mkdir /tmp/documents && mkdir /tmp/music
 
-EXPOSE 80 443
-
 CMD [ "/bin/sh", "/telegram_unvoicer_bot/start.sh" ]
