@@ -19,7 +19,11 @@ class AudioTelegramSupportHandler(AbstractTelegramSupportHandler):
         self._error_message = None
 
     async def _get_audio_file_path(self) -> str:
-        return self._file_id
+        file_data_response = await telegram_api_get_file_method(
+            self._session, data={'file_id': self._file_id}
+        )
+        file_data = await file_data_response.json()
+        return file_data['result']['file_path']
 
     async def _download_audio_file(self):
         audio_file_path = await self._get_audio_file_path()
@@ -56,9 +60,8 @@ class AudioTelegramSupportHandler(AbstractTelegramSupportHandler):
                 data = self._error_message
             else:
                 data = await decode_audio(self._downloaded_file_path)
-        except Exception as err:
-            print(err)
-            data = 'Не удалось разобрать файл.'
+        except Exception:
+            data = 'Не удалось разобрать файл \u2639'
 
         send_message_response = await telegram_api_send_message(
             self._session, data={'chat_id': self._chat_id, 'text': data}

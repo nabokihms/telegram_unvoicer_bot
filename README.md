@@ -30,7 +30,7 @@ cd telegram_unvoicer_bot
     -d \
     -e TELEGRAM_API_KEY='your_key'
     --name telegram_unvoicer_bot \
-    -p 443:443 \
+    -p 8080:8080 \
     telegram_unvoicer_bot:v1
  ```
 

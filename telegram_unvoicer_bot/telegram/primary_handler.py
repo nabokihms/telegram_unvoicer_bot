@@ -54,7 +54,7 @@ class TelegramWebhookHandler(AbstractTelegramHandler):
             return await AudioTelegramSupportHandler(
                 session,
                 self._chat_id,
-                self._data['message'][self._audio_file_type]['title']
+                self._data['message'][self._audio_file_type]['file_id']
             ).handle()
 
     async def handle(

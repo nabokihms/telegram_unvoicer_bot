@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
 echo "All aboard!" \
-    && telegram_unvoicer_bot_config_to_env -c "settings.yml" \
-    && nginx \
-    && telegram_unvoicer_bot_bind_webhook \
-    && telegram_unvoicer_bot_start \
+    && telegram_unvoicer_bot_get_webhook_info \
+    && telegram_unvoicer_bot_start 
