@@ -13,6 +13,7 @@ AUDIO_FILES_LANGUAGE = 'ru-RU'
 
 AUDIO_FILES_CONVERTERS = {
     'opus': convert_opus,
+    'oga': convert_opus,
 }
 
 AUDIO_FILES_SUPPORTED_FORMATS = frozenset(
