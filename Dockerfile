@@ -17,6 +17,8 @@ RUN apk add --update \
     gcc g++ make libffi-dev openssl-dev \
     && rm -rf /var/cache/apk/ \
     && rm -rf ~/.cache/pip\
-    && mkdir /tmp/documents && mkdir /tmp/music
+    && mkdir /tmp/documents \
+    && mkdir /tmp/music \
+    && mkdir /tmp/voice
 
 CMD [ "/bin/sh", "/telegram_unvoicer_bot/start.sh" ]
