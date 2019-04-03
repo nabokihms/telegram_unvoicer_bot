@@ -5,6 +5,7 @@ telegram_unvoicer_bot
 
 **На данный момент поддерживаются:**
 * WhatsApp _(формат .opus)_
+* Telegram _(формат ogg-opus)_
 
 Установка и запуск на Ubuntu >= 16.04
 ---
