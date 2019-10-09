@@ -11,9 +11,8 @@ from .const import TELEGRAM_MESSAGE_AUDIO_KEYS
 
 class TelegramWebhookHandler(AbstractTelegramHandler):
     """
-    Основной обработчик вебхуков от телеграма.
+    Main Telegram bot handler.
     """
-    # todo: проработать систему логирования.
     def __init__(self, loop: AbstractEventLoop):
         self._loop = loop
         self._request = None
@@ -25,7 +24,7 @@ class TelegramWebhookHandler(AbstractTelegramHandler):
     @property
     def _command(self) -> Optional[Tuple]:
         """
-        Получение команды из строки.
+        Get the command from text.
         """
         message = self._data['message']
         if 'text' not in message:
@@ -61,7 +60,7 @@ class TelegramWebhookHandler(AbstractTelegramHandler):
             self, request: ClientRequest, *args, **kwargs
     ) -> web.Response:
         """
-        Основной метод для обработки вебхуков.
+        Main method to handle the webhooks.
         """
         self._request = request
         await self._parse_request()
