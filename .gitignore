@@ -8,6 +8,7 @@ __pycache__/
 
 # Distribution / packaging
 .Python
+venv/
 env/
 build/
 develop-eggs/
@@ -62,6 +63,7 @@ target/
 
 # User-specific stuff:
 .idea/
+.vscode/
 
 # CMake
 cmake-build-debug/

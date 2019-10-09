@@ -1,0 +1,14 @@
+.idea/
+.vscode/
+
+# git
+.git
+.gitattributes
+.gitignore
+
+# Common
+README.md
+CHANGELOG.md
+docker-compose.yml
+Dockerfile
+venv/

@@ -1,8 +1,0 @@
-HOST_IP: str = '0.0.0.0'
-HOST_PORT: int = 8080
-
-HOST_URL: str = 'https://DOMAIN.EXAMPLE'
-WEBHOOKS_URL: str = '/webhooks'
-
-TELEGRAM_BOT_API_KEY: str = 'TELEGRAM_BOT_TOKEN'
-SSL_CERTIFICATES_PATH: str = '/telegram_unvoicer_bot/nginx/certs'
