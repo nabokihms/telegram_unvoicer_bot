@@ -15,7 +15,7 @@ Install and run on Ubuntu >= 16.04
 ---
 Clone the repo.
 ```bash
-git clone `ссылка на репозиторий`
+git clone `repo link`
 ```
 ```bash
 cd telegram_unvoicer_bot
