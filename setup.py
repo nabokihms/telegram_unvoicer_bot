@@ -5,8 +5,7 @@ _NAME = 'telegram_unvoicer_bot'
 setup(
     name=_NAME,
     version='0.1.0',
-    description='Бот для Telegram для преобразования голосовых '
-                'сообщений в текст.',
+    description='Telegram Bot to decoding voicemails into text',
     author='Maksim Nabokikh',
     author_email='max.nabokih@gmail.com',
     url='https://github.com/nabokihms/telegram_unvoicer_bot',
