@@ -19,13 +19,13 @@ _ALLOWED_HTTP_METHODS = {'get', 'post'}
 
 class _TelegramApiRequestBuilder(object):
     """
-    Класс для создания запросов на API телеграма.
+    Telegram API requests factory.
     """
     def __init__(self, http_method: str, api_method: str):
         lowered_http_method = http_method.lower()
 
         assert lowered_http_method in _ALLOWED_HTTP_METHODS, \
-            f'Недопустимый http метод - {lowered_http_method}.'
+            f'Unsupported http method - {lowered_http_method}.'
 
         self._http_method = lowered_http_method
         self._api_method = api_method
