@@ -3,6 +3,7 @@ from aiohttp import ClientSession
 from telegram_unvoicer_bot.audio import decode_audio, write_file_to_tmp_dir, \
     AUDIO_FILES_SUPPORTED_FORMATS, AUDIO_FILES_TEMPORARY_DIRECTORY
 from telegram_unvoicer_bot.telegram.const import TELEGRAM_BOT_FILE_PATH_API_URL
+
 from .abc import AbstractTelegramSupportHandler
 from .request import telegram_api_get_file_method, \
     telegram_api_send_message
@@ -10,7 +11,7 @@ from .request import telegram_api_get_file_method, \
 
 class AudioTelegramSupportHandler(AbstractTelegramSupportHandler):
     """
-    Вспомогательный обработчик полученных ботом аудиоФАЙЛОВ.
+    Additional hendler for Telegram bot.
     """
     def __init__(self, session: ClientSession, chat_id: str, file_id: str):
         super().__init__(session, chat_id)
@@ -30,7 +31,7 @@ class AudioTelegramSupportHandler(AbstractTelegramSupportHandler):
         path, ext = audio_file_path.split('.')
 
         if ext not in AUDIO_FILES_SUPPORTED_FORMATS:
-            self._error_message = f'Формат файла .{ext} не поддерживается ' \
+            self._error_message = f'File extension .{ext} not supported.' \
                                   f'\u2639'
             return
 
@@ -39,7 +40,7 @@ class AudioTelegramSupportHandler(AbstractTelegramSupportHandler):
         )
 
         if audio_file_body_resp.status != 200:
-            self._error_message = u'Загрузка файла не удалась \u2639'
+            self._error_message = u'Unable to download the file \u2639'
             return
 
         temp_dir_audio_file_path = \
@@ -53,15 +54,13 @@ class AudioTelegramSupportHandler(AbstractTelegramSupportHandler):
     async def handle(self) -> int:
 
         await self._download_audio_file()
-        # Если возникла ошибка, возвращаем её текст, чтобы отправить
-        # пользователю.
         try:
             if self._error_message:
                 data = self._error_message
             else:
                 data = await decode_audio(self._downloaded_file_path)
         except Exception:
-            data = 'Не удалось разобрать файл \u2639'
+            data = 'Unable to decode message to text \u2639'
 
         send_message_response = await telegram_api_send_message(
             self._session, data={'chat_id': self._chat_id, 'text': data}
