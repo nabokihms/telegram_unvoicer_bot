@@ -19,7 +19,7 @@ setup(
         'aiofiles==0.3.2',
         'SpeechRecognition==3.8.1',
         'gunicorn==19.8.1',
-        'PyYAML==3.12',
+        'PyYAML==5.1',
     ],
     extras_require={
         'dev': [
