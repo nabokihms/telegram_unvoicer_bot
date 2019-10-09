@@ -14,12 +14,12 @@ def run():
                         nargs='?',
                         default=False,
                         const=True,
-                        help='Запустить воркеры в фоновом режиме.')
+                        help='Run workers as background processes.')
     parser.add_argument('--reload',
                         nargs='?',
                         default=False,
                         const=True,
-                        help='Перезагрузка воркеров при изменении кода.')
+                        help='Reload workers if code changes.')
 
     if 'TELEGRAM_API_KEY' not in environ:
         print('Environ TELEGRAM_API_KEY is not set.')
