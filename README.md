@@ -1,29 +1,26 @@
 Telegram Unvoicer Bot
 =====================
-This thing was created all because my wife love to send me voicemails over and over again, and often I cannot listen to them.
 
-Info
-----
-Bot for decoding voicemail messages to text. Simply send a message with voicemail to the bot, and he will return the message in a text.
+Motivation
+----------
+This thing exists only because my wife loves sending me voicemails over and over again. Without headphones, I have no chance to ensure whether this message is urgent or not. Fortunately, this bot works like a charm for me. He is the savior of my marriage.
 
-**For now supporting voicemail messages from:**
+How does it work?
+-----------------
+Send a voicemail to the bot, and he will extract a text from it.
+* Click on a message with a voicemail
+* Click `Share`
+* Choose `Telegram` and click on this bot icon
+* Wait for the text
+
+**Supported audio formats:**
 * WhatsApp _(format .opus)_
 * Telegram _(format ogg-opus)_
 
-Install and run on Ubuntu >= 16.04
----
-Clone the repo.
-```bash
-git clone `repo link`
-```
-```bash
-cd telegram_unvoicer_bot
-```
-
-Install the docker.  
-https://docs.docker.com/install/linux/docker-ce/ubuntu/
+Build and Deploy
+----------------
  
-Build the image:
+Build the docker image using your TELEGRAM_API_KEY:
 ```bash
 docker image build \
    -t telegram_unvoicer_bot:v1 \
@@ -38,7 +35,7 @@ docker run \
    telegram_unvoicer_bot:v1
 ```
 
-The last thing to set up telegram webhooks. In the docker image, we already have some ready scripts for it.
+The last thing left is setting up telegram webhooks. In the previously created docker image, we already have some ready scripts for it.
 ```
 telegram_unvoicer_bot_set_webhook // for setup the webhook
 telegram_unvoicer_bot_get_webhook_info // for webhook info
