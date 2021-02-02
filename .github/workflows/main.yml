@@ -28,8 +28,7 @@ jobs:
       - name: Preparation
         id: prep
         run: |
-          REGISTRY="elfushka/telegram_unvoicer_bot"
-          IMAGE="${REGISTRY}/${{ github.repository }}/${{ github.event.repository.name }}"
+          IMAGE="elfushka/telegram_unvoicer_bot"
           TAGS="${IMAGE}:${{ github.sha }}"
           if [[ $GITHUB_REF == ref/head/master ]]; then
             TAGS="${TAGS},${IMAGE}:latest"
