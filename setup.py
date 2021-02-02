@@ -18,7 +18,7 @@ setup(
         'aiohttp==3.2.1',
         'aiofiles==0.3.2',
         'SpeechRecognition==3.8.1',
-        'gunicorn==19.8.1',
+        'gunicorn==20.0.4',
         'PyYAML==5.4.1',
     ],
     extras_require={
