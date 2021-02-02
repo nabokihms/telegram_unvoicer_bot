@@ -1,17 +1,17 @@
-Telegram Unvoicer Bot
+Voice to text bot
 =====================
 
 Motivation
 ----------
-This thing exists only because my wife loves sending me voicemails over and over again. Without headphones, I have no chance to ensure whether this message is urgent or not. Fortunately, this bot works like a charm for me. He is the savior of my marriage.
+This bot was created because my wife loved sending me voicemails instead of typing, and I was too busy talking with my colleagues to listen to them. Without ensuring there was nothing urgent happened, I couldn't just ignore them.
 
 How does it work?
 -----------------
-Send a voicemail to the bot, and he will extract a text from it.
-* Click on a message with a voicemail
-* Click `Share`
-* Choose `Telegram` and click on this bot icon
-* Wait for the text
+If you send a voicemail to the bot, and he will extract a text from it.
+* Click on a message with a voicemail.
+* Click `Share`.
+* Choose `Telegram` and click on this bot icon (you can create your own bot using @botfather).
+* Wait for the text.
 
 **Supported audio formats:**
 * WhatsApp _(format .opus)_
