@@ -5,6 +5,7 @@
 .git
 .gitattributes
 .gitignore
+.github
 
 # Common
 README.md
