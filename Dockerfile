@@ -1,4 +1,4 @@
-FROM alpine:3.9
+FROM alpine:3.14.2
 LABEL telegram_unvoicer_bot="0.0.1"
 
 ENV PATH=/usr/local/bin:$PATH \
