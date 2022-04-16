@@ -3,11 +3,11 @@ Voice to text bot
 
 Motivation
 ----------
-This bot was created because my wife loved sending me voicemails instead of typing, and I was too busy talking with my colleagues to listen to them. Without ensuring there was nothing urgent happened, I couldn't just ignore them.
+This bot was created because my wife loved sending me voicemails instead of typing, and I was too busy talking with my colleagues to listen to them. Without ensuring there was nothing urgent inside, I couldn't just ignore them.
 
 How does it work?
 -----------------
-If you send a voicemail to the bot, and he will extract a text from it.
+Send a voicemail to the bot, and our bot will convert it to a text message.
 * Click on a message with a voicemail.
 * Click `Share`.
 * Choose `Telegram` and click on this bot icon (you can create your own bot using @botfather).
