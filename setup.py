@@ -15,7 +15,7 @@ setup(
     python_requires='>=3.6',
     include_package_data=True,
     install_requires=[
-        'aiohttp==3.7.4.post0',
+        'aiohttp==3.8.2',
         'aiofiles==0.7.0',
         'SpeechRecognition==3.8.1',
         'gunicorn==20.1.0',
