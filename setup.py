@@ -17,7 +17,7 @@ setup(
     install_requires=[
         'aiohttp==3.8.3',
         'aiofiles==0.7.0',
-        'SpeechRecognition==3.8.1',
+        'SpeechRecognition==3.9.0',
         'gunicorn==20.1.0',
         'PyYAML==5.4.1',
     ],
